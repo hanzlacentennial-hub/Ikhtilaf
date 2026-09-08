@@ -1,0 +1,86 @@
+.page {
+  min-height: 100vh;
+
+  background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDBqbzRteGVoa2ZuNDVqMmQyOGx3YzRmMXVlNmNpa20xd3dnbmNzYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0ErGLN9pIY40MAms/giphy.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+.subscribe-section {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.subscribe-section h2,
+.subscribe-section p {
+  margin: 0;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+}
+
+.brand {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.site-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagline {
+  color: white;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 32px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 75px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+.definition {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 18px;
+  color: white;
+}
+
+.scroll-text {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 42px;
+  color: white;
+}
