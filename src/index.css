@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&family=Roboto:wght@700&display=swap');
+@font-face {
+  font-family: 'proxima-n-w01-reg';
+  src: url('https://static.parastorage.com/fonts/v2/c24fcada-6239-48bc-8b88-9288338191c9/v1/proxima-n-w01-reg.woff2');
+}
+
 :root {
   font-family: Arial, Helvetica, sans-serif;
   color: #111;

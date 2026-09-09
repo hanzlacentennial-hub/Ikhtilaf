@@ -10,13 +10,71 @@
 .subscribe-section {
   background: transparent;
   margin: 0;
-  padding: 0;
+  padding: 149px 0 47px;
 }
 
-.subscribe-section h2,
-.subscribe-section p {
-  margin: 0;
+.subscribe-form {
+  width: 980px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
 }
+
+.subscribe-form h2 {
+  margin: 26px 0 18px 2px;
+  font-family: Questrial, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  color: rgb(251, 251, 251);
+}
+
+.subscribe-fields {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+  margin-bottom: 39px;
+}
+
+.subscribe-fields input {
+  width: 252px;
+  height: 51px;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.01);
+  color: white;
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.subscribe-fields input::placeholder {
+  color: rgb(64, 64, 64);
+}
+
+.subscribe-fields button {
+  width: 190px;
+  height: 51px;
+  border: 0;
+  background: white;
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.subscribe-fields button:hover {
+  background: rgb(255, 64, 64);
+}
+
+.luv-ya {
+  width: 211px;
+  margin: 0 auto;
+  font-family: 'proxima-n-w01-reg', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  color: rgb(251, 251, 251);
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -36,9 +94,12 @@
 }
 
 .tagline {
-  color: white;
-  font-size: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
   margin-top: 4px;
+  color: white;
+  letter-spacing: 0.05em;
 }
 
 .navbar nav {
@@ -47,11 +108,12 @@
 }
 
 .navbar a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
   color: white;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 15px;
 }
-
 main {
   min-height: 100vh;
   display: flex;

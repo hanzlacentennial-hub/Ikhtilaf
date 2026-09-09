@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [subscribed, setSubscribed] = useState(false)
   return (
     <div className="page">
       <header className="navbar">
@@ -30,7 +32,39 @@ function App() {
         </p>
       </main>
       <section className="subscribe-section">
-        <h2>subscribe to get with the times</h2>
+      <form
+        className="subscribe-form"
+        onSubmit={(event) => {
+          event.preventDefault()
+          setSubscribed(true)
+        }}
+      >
+      <h2>subscribe to get with the times</h2>
+
+          <div className="subscribe-fields">
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
+              maxLength={100}
+              required
+            />
+
+           <input
+              type="email"
+              name="email"
+              placeholder="email"
+              maxLength={250}
+              required
+            />
+
+            <button type="submit">
+              subscribe
+            </button>
+          </div>
+
+          {subscribed && <p className="luv-ya">luv ya :)</p>}
+        </form>
       </section>
     </div>
   )
