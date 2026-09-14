@@ -146,3 +146,19 @@ h1 {
   margin-top: 42px;
   color: white;
 }
+
+.about-page {
+  min-height: 100vh;
+  background: black;
+  color: white;
+  display: flow-root;
+  padding-bottom: 30px;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background: black;
+}

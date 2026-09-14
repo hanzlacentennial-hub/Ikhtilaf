@@ -1,7 +1,17 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import About from './pages/About'
 import './App.css'
 
 function App() {
+  if (window.location.pathname === '/about') {
+    return (
+      <Routes>
+        <Route path="/about" element={<About />} />
+      </Routes>
+    )
+  }
+
   const [subscribed, setSubscribed] = useState(false)
   return (
     <div className="page">
@@ -13,7 +23,7 @@ function App() {
 
   <nav>
     <a href="#home">home</a>
-    <a href="#about">about + contact</a>
+    <a href="/about">about + contact</a>
     <a href="#book-club">book club</a>
     <a href="#archive">archive</a>
     <a href="#bookstores">bookstores</a>
