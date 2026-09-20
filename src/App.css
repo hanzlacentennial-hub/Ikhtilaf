@@ -271,3 +271,149 @@ body,
   max-width: calc(100% - 40px);
   margin: 80px auto 0;
 }
+
+.archive-page {
+  min-height: 100vh;
+  background: black;
+  color: white;
+  display: flow-root;
+}
+
+.archive-content {
+  width: 770px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.archive-content > h1 {
+  margin: 0 0 55px;
+  font-size: 40px;
+  line-height: 1.35em;
+  text-align: center;
+  color: white;
+}
+
+.archive-list {
+  width: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.9em;
+  color: white;
+}
+
+.archive-book {
+  margin-bottom: 70px;
+}
+
+.archive-date {
+  margin: 0 0 1px;
+  font-size: 20px;
+}
+
+.archive-book hr {
+  margin: 0 0 15px;
+  border: 0;
+  border-top: 2px solid white;
+}
+
+.archive-book-content {
+  display: grid;
+  grid-template-columns: 165px 1fr 201px;
+  column-gap: 60px;
+  align-items: start;
+}
+
+.archive-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.4em;
+}
+.archive-author {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4em;
+}
+
+.archive-description {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+.archive-cover {
+  width: 201px;
+  height: 201px;
+  object-fit: cover;
+}
+
+.bookstores-page {
+  min-height: 100vh;
+  background-image: url('https://static.wixstatic.com/media/857fe4_f64b7b610f374df5a41ecb08c510561b~mv2.gif');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flow-root;
+}
+
+.bookstores-content {
+  width: 640px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding-top: 175px;
+}
+
+.bookstores-content > h1 {
+  width: 640px;
+  margin: 0 auto 8px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 38px;
+  line-height: 1.6em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.bookstores-note {
+  width: 760px;
+  margin-left: -60px;
+  margin-top: 0;
+  margin-bottom: 60px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  text-align: center;
+  color: white;
+}
+
+.bookstores-note a,
+.bookstore-section a {
+  color: white;
+  text-decoration: underline;
+}
+
+.bookstore-section {
+  margin-bottom: 35px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+.bookstore-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.4em;
+  font-weight: bold;
+  color: white;
+}
+
+.bookstore-section > a {
+  display: inline;
+  margin: 0;
+}
+
+.bookstore-section > a + a {
+  display: block;
+  margin-top: 10px;
+}

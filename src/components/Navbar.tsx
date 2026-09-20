@@ -12,7 +12,6 @@ function Navbar() {
         <a href="/book-club">book club</a>
         <a href="/archive">archive</a>
         <a href="/bookstores">bookstores</a>
-        <a href="/quote">quote</a>
       </nav>
     </header>
   )

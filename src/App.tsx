@@ -2,17 +2,23 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import About from './pages/About'
 import BookClub from './pages/BookClub'
+import Archive from './pages/Archive'
+import Bookstores from './pages/Bookstores'
 import './App.css'
 
 function App() {
   if (
     window.location.pathname === '/about' ||
-    window.location.pathname === '/book-club'
+    window.location.pathname === '/book-club' ||
+    window.location.pathname === '/archive' ||
+    window.location.pathname === '/bookstores'
   ) {
     return (
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/book-club" element={<BookClub />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/bookstores" element={<Bookstores />} />
       </Routes>
     )
   }
