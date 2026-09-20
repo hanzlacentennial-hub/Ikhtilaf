@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import Navbar from '../components/Navbar'
 
 function About() {
   const [joined, setJoined] = useState(false)
   return (
     <div className="about-page">
+      <Navbar />
+      
       <section className="about-story">
         <h1>our story</h1>
 

@@ -162,3 +162,112 @@ body,
   margin: 0;
   background: black;
 }
+
+.about-story {
+  width: 770px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.about-story > h1 {
+  margin: 0 0 55px;
+  font-size: 40px;
+  line-height: 1.35em;
+  text-align: center;
+  color: white;
+}
+
+.about-story > p,
+.about-story > ol,
+.about-story > ul {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.9em;
+  color: white;
+}
+
+.about-story > p {
+  margin: 0 0 30px;
+}
+
+.about-story > ol,
+.about-story > ul {
+  margin: 0 0 35px;
+  padding-left: 40px;
+}
+
+.about-contact {
+  text-align: center;
+}
+
+.about-contact a {
+  color: white;
+  text-decoration: underline;
+}
+
+.join-section {
+  margin-top: 70px;
+  margin-bottom: 100px;
+}
+
+.book-club-page {
+  min-height: 100vh;
+  background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDBqbzRteGVoa2ZuNDVqMmQyOGx3YzRmMXVlNmNpa20xd3dnbmNzYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0ErGLN9pIY40MAms/giphy.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
+  color: white;
+  display: flow-root;
+  padding-bottom: 100px;
+}
+
+.book-club-content {
+  width: 852px;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding-top: 118px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.book-info {
+  width: 476px;
+}
+
+.book-info h1 {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 29px;
+  font-weight: bold;
+  color: #93b5db;
+}
+
+.book-author {
+  margin: 12px 0 55px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #93b5db;
+}
+
+.book-description {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.5em;
+  color: #93b5db;
+}
+
+.book-cover {
+  width: 247px;
+  height: 352px;
+  object-fit: cover;
+}
+
+.book-club-join {
+  width: 980px;
+  max-width: calc(100% - 40px);
+  margin: 80px auto 0;
+}
