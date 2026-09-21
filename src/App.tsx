@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import About from './pages/About'
 import BookClub from './pages/BookClub'
@@ -6,24 +6,22 @@ import Archive from './pages/Archive'
 import Bookstores from './pages/Bookstores'
 import './App.css'
 
-function App() {
-  if (
-    window.location.pathname === '/about' ||
-    window.location.pathname === '/book-club' ||
-    window.location.pathname === '/archive' ||
-    window.location.pathname === '/bookstores'
-  ) {
-    return (
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/book-club" element={<BookClub />} />
-        <Route path="/archive" element={<Archive />} />
-        <Route path="/bookstores" element={<Bookstores />} />
-      </Routes>
-    )
-  }
-
+function Home() {
   const [subscribed, setSubscribed] = useState(false)
+
+  const [books, setBooks] = useState<
+    { id: number; title: string; author: string }[]
+  >([])
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/books')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        setBooks(data)
+      })
+  }, [])
+
   return (
     <div className="page">
       <header className="navbar">
@@ -88,6 +86,18 @@ function App() {
         </form>
       </section>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/book-club" element={<BookClub />} />
+      <Route path="/archive" element={<Archive />} />
+      <Route path="/bookstores" element={<Bookstores />} />
+    </Routes>
   )
 }
 
