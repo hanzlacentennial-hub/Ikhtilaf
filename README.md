@@ -1,75 +1,48 @@
-# React + TypeScript + Vite
+# Ikhtilaf
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ikhtilaf is a full-stack web platform being developed for Ikhtilaf, a social justice book club focused on literature, justice and equality.
 
-Currently, two official plugins are available:
+The platform is designed to provide a central and secure space for members to explore current and archived books, vote for next book reads, and engage with the book club online.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+### Frontend
+- React
+- TypeScript
+- Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend
+- Python
+- FastAPI
 
-## Expanding the ESLint configuration
+### Database
+- PostgreSQL
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Current Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Multi-page book club website
+- Current and archived book information
+- Local and POC-owned bookstore resources
+- REST API built with FastAPI
+- React frontend connected to the Python backend through API requests
+- PostgreSQL integration for storing and retrieving book club data
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## In Development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Member registration and accounts
+- User authentication
+- Book voting
+- Administrative tools
+- Additional member features
 
-```
+## Architecture
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+React + TypeScript frontend  
+↓  
+FastAPI + Python backend  
+↓  
+PostgreSQL database
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## About Ikhtilaf
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+Ikhtilaf is a social justice book club that brings people together through literature and discussion around justice, equality, and social change.
