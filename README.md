@@ -2,7 +2,7 @@
 
 Ikhtilaf is a full-stack web platform being developed for Ikhtilaf, a social justice book club focused on literature, justice and equality.
 
-The platform is designed to provide a central and secure space for members to explore current and archived books, vote for next book reads, and engage with the book club online.
+The platform is designed to provide a central and welcoming space for members to explore current and archived books, vote for upcoming reads, and engage with the book club online.
 
 ## Tech Stack
 
