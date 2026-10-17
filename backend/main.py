@@ -129,3 +129,10 @@ def get_books():
         }
         for book in books
     ]
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok",
+        "service": "Ikhtilaf API"
+    }
