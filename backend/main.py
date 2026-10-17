@@ -6,11 +6,22 @@ from pwdlib import PasswordHash
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import psycopg
+import secrets
+import hashlib
+from datetime import datetime, timedelta, timezone
+from fastapi import Response
 from dotenv import load_dotenv
+from fastapi import Cookie
 
 load_dotenv("backend/.env")
 
 password_hash = PasswordHash.recommended()
+
+def generate_session_token():
+    token = secrets.token_urlsafe(32)
+    token_hash = hashlib.sha256(token.encode()).hexdigest()
+
+    return token, token_hash
 
 class MemberRegister(BaseModel):
     name: str
@@ -68,7 +79,7 @@ def register_member(member: MemberRegister):
     }
 
 @app.post("/login")
-def login_member(member: MemberLogin):
+def login_member(member: MemberLogin, response: Response):
     with psycopg.connect(
         dbname=os.getenv("DB_NAME"),
         user=os.getenv("DB_USER"),
@@ -100,6 +111,36 @@ def login_member(member: MemberLogin):
             status_code=401,
             detail="Invalid email or password"
         )
+
+    token, token_hash = generate_session_token()
+
+    expires_at = datetime.now(timezone.utc) + timedelta(days=7)
+
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO sessions (member_id, token_hash, expires_at)
+                VALUES (%s, %s, %s);
+                """,
+                (user[0], token_hash, expires_at)
+            )
+
+    response.set_cookie(
+        key="session_token",
+        value=token,
+        httponly=True,
+        secure=False,  # Local HTTP development only
+        samesite="lax",
+        max_age=7 * 24 * 60 * 60,
+        path="/"
+    )
 
     return {
         "message": "Login successful",
@@ -135,4 +176,47 @@ def health_check():
     return {
         "status": "ok",
         "service": "Ikhtilaf API"
+    }
+
+@app.get("/me")
+def get_current_member(session_token: str | None = Cookie(default=None)):
+    if session_token is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Not authenticated"
+        )
+
+    token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT members.id, members.name, members.email
+                FROM sessions
+                JOIN members ON sessions.member_id = members.id
+                WHERE sessions.token_hash = %s
+                  AND sessions.expires_at > CURRENT_TIMESTAMP;
+                """,
+                (token_hash,)
+            )
+
+            member = cursor.fetchone()
+
+    if member is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid or expired session"
+        )
+
+    return {
+        "id": member[0],
+        "name": member[1],
+        "email": member[2]
     }
