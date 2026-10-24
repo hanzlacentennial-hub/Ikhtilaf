@@ -220,3 +220,42 @@ def get_current_member(session_token: str | None = Cookie(default=None)):
         "name": member[1],
         "email": member[2]
     }
+
+@app.post("/logout")
+def logout_member(
+    response: Response,
+    session_token: str | None = Cookie(default=None)
+):
+    if session_token is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Not authenticated"
+        )
+
+    token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                DELETE FROM sessions
+                WHERE token_hash = %s;
+                """,
+                (token_hash,)
+            )
+
+    response.delete_cookie(
+        key="session_token",
+        path="/",
+        samesite="lax",
+        httponly=True
+    )
+
+    return {"message": "Logged out successfully"}
+
