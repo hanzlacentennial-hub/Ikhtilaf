@@ -32,6 +32,10 @@ class MemberLogin(BaseModel):
     email: str
     password: str
 
+class BookCreate(BaseModel):
+    title: str
+    author: str
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -369,3 +373,29 @@ def get_book(book_id: int):
         "author": book[2]
     }
 
+@app.post("/books", status_code=201)
+def add_book(book: BookCreate):
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO books (title, author)
+                VALUES (%s, %s)
+                RETURNING id;
+                """,
+                (book.title, book.author)
+            )
+
+            book_id = cursor.fetchone()[0]
+
+    return {
+        "id": book_id,
+        "title": book.title,
+        "author": book.author
+    }
