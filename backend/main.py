@@ -399,3 +399,27 @@ def add_book(book: BookCreate):
         "title": book.title,
         "author": book.author
     }
+
+@app.delete("/books/{book_id}")
+def delete_book(book_id: int):
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "DELETE FROM books WHERE id = %s RETURNING id;",
+                (book_id,)
+            )
+            deleted_book = cursor.fetchone()
+
+    if deleted_book is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Book not found"
+        )
+
+    return {"message": "Book deleted successfully"}
