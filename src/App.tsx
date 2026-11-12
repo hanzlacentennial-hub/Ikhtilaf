@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import About from './pages/About'
 import BookClub from './pages/BookClub'
@@ -8,19 +8,6 @@ import './App.css'
 
 function Home() {
   const [subscribed, setSubscribed] = useState(false)
-
-  const [books, setBooks] = useState<
-    { id: number; title: string; author: string }[]
-  >([])
-
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/books')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        setBooks(data)
-      })
-  }, [])
 
   return (
     <div className="page">

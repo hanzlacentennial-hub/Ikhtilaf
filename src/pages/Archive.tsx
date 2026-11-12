@@ -1,6 +1,18 @@
+import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 
 function Archive() {
+  const [books, setBooks] = useState<
+    { id: number; title: string; author: string }[]
+  >([])
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/books')
+      .then(response => response.json())
+      .then(data => setBooks(data))
+      .catch(error => console.error('Could not load books:', error))
+  }, [])
+
   return (
     <div className="archive-page">
       <Navbar />
@@ -36,6 +48,22 @@ function Archive() {
                 </div>
             </article>
         </section>
+
+        <section className="archive-list">
+          <h2>books in our collection</h2>
+
+          {books.map(book => (
+            <article className="archive-book" key={book.id}>
+              <hr />
+
+              <div className="archive-book-info">
+                <p className="archive-title">{book.title}</p>
+                <p className="archive-author">by {book.author}</p>
+              </div>
+            </article>
+          ))}
+        </section>
+
       </section>
     </div>
   )
