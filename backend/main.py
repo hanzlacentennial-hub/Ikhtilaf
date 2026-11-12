@@ -304,6 +304,38 @@ def count_books():
 
     return {"total_books": total}
 
+@app.get("/books/random")
+def get_random_book():
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT id, title, author
+                FROM books
+                ORDER BY RANDOM()
+                LIMIT 1;
+                """
+            )
+            book = cursor.fetchone()
+
+    if book is None:
+        raise HTTPException(
+            status_code=404,
+            detail="No books found"
+        )
+
+    return {
+        "id": book[0],
+        "title": book[1],
+        "author": book[2]
+    }
+
 @app.get("/books/{book_id}")
 def get_book(book_id: int):
     with psycopg.connect(
