@@ -289,6 +289,21 @@ def search_books(q: str):
         for book in books
     ]
 
+@app.get("/books/count")
+def count_books():
+    with psycopg.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT")
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT COUNT(*) FROM books;")
+            total = cursor.fetchone()[0]
+
+    return {"total_books": total}
+
 @app.get("/books/{book_id}")
 def get_book(book_id: int):
     with psycopg.connect(
