@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS members (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -9,7 +10,8 @@ CREATE TABLE IF NOT EXISTS members (
 CREATE TABLE IF NOT EXISTS books (
     id SERIAL PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
-    author VARCHAR(200) NOT NULL
+    author VARCHAR(200) NOT NULL,
+    description TEXT
 );
 
 CREATE TABLE IF NOT EXISTS sessions (

@@ -152,6 +152,7 @@ def login_member(member: MemberLogin, response: Response):
         "name": user[1]
     }
 
+
 @app.get("/books")
 def get_books():
     with psycopg.connect(
@@ -163,14 +164,15 @@ def get_books():
     ) as connection:
 
         with connection.cursor() as cursor:
-            cursor.execute("SELECT id, title, author FROM books;")
+            cursor.execute("SELECT id, title, author, description FROM books;")
             books = cursor.fetchall()
 
     return [
         {
             "id": book[0],
             "title": book[1],
-            "author": book[2]
+            "author": book[2],
+            "description": book[3]
         }
         for book in books
     ]
